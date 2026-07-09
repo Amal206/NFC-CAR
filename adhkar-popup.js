@@ -1,21 +1,4 @@
-/* ==========================================================================
-   دعاء — أذكار وأدعية | adhkar-popup.js
-   Composant de rappel d'adhkar, réutilisable et indépendant du reste du
-   site. Fonctionne automatiquement sur TOUTE page qui inclut ce script
-   (aucune page dédiée n'est nécessaire).
 
-   Fonctionnement :
-   - Toutes les 5 minutes, une petite fenêtre (popup) apparaît avec un
-     dhikr choisi aléatoirement dans window.ADHKAR_LIST (adhkar-data.js).
-   - Un bouton ✖ rouge permet de la fermer.
-   - Une fois fermée, elle réapparaît automatiquement 5 minutes plus tard
-     avec un autre dhikr.
-   - Le minuteur est mémorisé dans sessionStorage : il continue son cycle
-     de façon fluide même quand l'utilisateur change de page.
-
-   Pour changer la liste des adhkar : voir adhkar-data.js (aucune
-   modification de ce fichier n'est nécessaire).
-   ========================================================================== */
 
 (function () {
   'use strict';
@@ -144,18 +127,17 @@
     var now = Date.now();
     var nextTime = stored ? parseInt(stored, 10) : now + INTERVAL_MS;
 
-    if (!stored) {
-      try { sessionStorage.setItem(STORAGE_KEY, String(nextTime)); } catch (e) {}
+    // Si l'échéance stockée est déjà dépassée (onglet resté ouvert
+    // longtemps, tests, etc.), on ne rattrape JAMAIS en affichant tout
+    // de suite : on repart proprement sur un cycle complet de 5 minutes.
+    if (!stored || (nextTime - now) <= 0) {
+      nextTime = now + INTERVAL_MS;
     }
 
+    try { sessionStorage.setItem(STORAGE_KEY, String(nextTime)); } catch (e) {}
+
     var remaining = nextTime - now;
-    if (remaining <= 0) {
-      // Le délai est déjà écoulé pendant la navigation : on affiche
-      // rapidement, puis on repart sur un cycle complet de 5 minutes.
-      scheduleTimer = setTimeout(showPopup, 800);
-    } else {
-      scheduleTimer = setTimeout(showPopup, remaining);
-    }
+    scheduleTimer = setTimeout(showPopup, remaining);
   }
 
   if (document.readyState === 'loading') {
