@@ -907,22 +907,25 @@ body.splash-fallback .splash-word{ display:block; }
     max-width:100%;
   }
   .brand{
+    flex-direction:column;
     flex-wrap:nowrap;
-    gap:10px;
+    gap:6px;
     max-width:100%;
   }
   .brand-logo{
-    height:clamp(36px, 11vw, 46px);
-    max-width:120px;
+    height:clamp(44px, 14vw, 60px);
+    max-width:180px;
     flex-shrink:0;
   }
   .brand-text{
     min-width:0;
+    align-items:center;
   }
   .brand-text small,
   .brand small{
     overflow-wrap:break-word;
     word-break:break-word;
+    text-align:center;
   }
   .main-logo-logo{
     max-width:220px;
