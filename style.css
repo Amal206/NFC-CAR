@@ -895,62 +895,72 @@ body.splash-fallback .splash-word{ display:block; }
 .spacer-lg{ height:var(--section-space); }
 
 /* -------------------- 16. Ajustements fins mobile -------------------- */
-/* Header : réorganisation complète en colonne sur mobile, sans toucher
-   au layout desktop (toutes les règles ci-dessous sont dans des media
-   queries max-width et n'affectent que les petits écrans). */
+/* Header : on garde EXACTEMENT la même disposition qu'en desktop
+   (tout sur une seule ligne : logo+tagline d'un côté, FR + "من نحن"
+   de l'autre) — on ne fait que resserrer tailles/espacements pour que
+   ça tienne sans se casser sur un petit écran. Aucune règle ici ne
+   s'applique au-dessus de 600px, donc le desktop n'est pas affecté. */
 @media (max-width:600px){
   .header-inner{
-    flex-direction:column;
     flex-wrap:nowrap;
-    gap:12px;
-    padding:14px var(--gutter) 16px;
+    justify-content:space-between;
+    gap:8px;
+    padding:10px var(--gutter);
     max-width:100%;
   }
   .brand{
-    flex-direction:column;
+    flex-direction:row;
     flex-wrap:nowrap;
     gap:6px;
-    max-width:100%;
+    min-height:auto;
+    flex-shrink:1;
+    min-width:0;
   }
   .brand-logo{
-    height:clamp(44px, 14vw, 60px);
-    max-width:180px;
+    height:28px;
+    max-width:80px;
     flex-shrink:0;
   }
   .brand-text{
     min-width:0;
-    align-items:center;
   }
   .brand-text small,
   .brand small{
-    overflow-wrap:break-word;
-    word-break:break-word;
-    text-align:center;
+    font-size:.66rem;
+    white-space:nowrap;
+    letter-spacing:.4px;
   }
   .main-logo-logo{
-    max-width:220px;
+    max-width:140px;
   }
   .header-actions{
     flex-wrap:nowrap;
-    justify-content:center;
-    gap:8px;
-    width:100%;
+    gap:6px;
+    flex-shrink:0;
   }
   .lang-switch,
   .back-link{
-    flex:0 1 auto;
-    min-height:40px;
-    padding:8px 14px;
-    font-size:.85rem;
+    min-height:30px;
+    padding:5px 10px;
+    font-size:.7rem;
+    gap:4px;
+    white-space:nowrap;
+  }
+  .lang-switch svg,
+  .back-link svg{
+    width:13px;
+    height:13px;
   }
 }
 @media (max-width:380px){
-  .header-inner{ padding:12px 14px; gap:10px; }
-  .header-actions{ gap:6px; }
+  .header-inner{ padding:8px 12px; gap:6px; }
+  .header-actions{ gap:4px; }
   .lang-switch span{ display:none; } /* icône seule sur très petits écrans */
   .lang-switch,
-  .back-link{ padding:8px 10px; font-size:.8rem; }
-  .brand-logo{ height:34px; max-width:100px; }
+  .back-link{ padding:5px 8px; font-size:.66rem; }
+  .brand-logo{ height:24px; max-width:60px; }
+  .brand-text small,
+  .brand small{ font-size:.6rem; }
   .now-playing{ padding:12px; gap:8px; }
   .np-title{ font-size:.92rem; }
 }
