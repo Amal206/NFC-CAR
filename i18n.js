@@ -36,7 +36,10 @@
 
     // Section commande
     'order.title':            { ar:'تحب تطلب بطاقة دعاء NFC؟', fr:'Vous voulez commander une carte دعاء NFC ?' },
-    'order.text':              { ar:'بطاقة أنيقة تضعها أينما تشاء، تفتح لك هذا العالم بلمسة واحدة.', fr:'Une carte élégante à placer où vous le souhaitez, qui ouvre cet univers en une seule touche.' },
+    'order.text':              { ar:'هديةٌ تبقى آثارها الجميلة مع الزمن، تجمع بين التقنية والذكر لتُسعد من تحب.', fr:'Un cadeau dont la beauté traverse le temps, alliant technologie et spiritualité pour illuminer le quotidien de ceux que vous aimez.' },
+    'order.benefit1':          { ar:'أهدِها لأحبابك وأصدقائك وأفراد عائلتك', fr:'Offrez-la à vos proches, amis et membres de votre famille' },
+    'order.benefit2':          { ar:'كلما استعملوا البطاقة وذكروا الله، كان لك نصيب من الأجر بإذن الله', fr:'Chaque fois qu\\u2019ils l\\u2019utiliseront pour évoquer Dieu, vous en récolterez la récompense, si Dieu le veut' },
+    'order.benefit3':          { ar:'ذكرى طيبة تجمع بين الأصالة والتقنية، تدوم لسنوات', fr:'Un beau souvenir alliant authenticité et technologie, qui dure des années' },
     'order.btn':                { ar:'اطلب توا', fr:'Commander maintenant' },
     'order.pending_alert':    { ar:'رابط الطلب سيتم إضافته قريباً.', fr:'Le lien de commande sera ajouté prochainement.' },
 
