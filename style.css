@@ -895,12 +895,59 @@ body.splash-fallback .splash-word{ display:block; }
 .spacer-lg{ height:var(--section-space); }
 
 /* -------------------- 16. Ajustements fins mobile -------------------- */
+/* Header : réorganisation complète en colonne sur mobile, sans toucher
+   au layout desktop (toutes les règles ci-dessous sont dans des media
+   queries max-width et n'affectent que les petits écrans). */
 @media (max-width:600px){
-  .header-inner{ gap:8px 14px; }
+  .header-inner{
+    flex-direction:column;
+    flex-wrap:nowrap;
+    gap:12px;
+    padding:14px var(--gutter) 16px;
+    max-width:100%;
+  }
+  .brand{
+    flex-wrap:nowrap;
+    gap:10px;
+    max-width:100%;
+  }
+  .brand-logo{
+    height:clamp(36px, 11vw, 46px);
+    max-width:120px;
+    flex-shrink:0;
+  }
+  .brand-text{
+    min-width:0;
+  }
+  .brand-text small,
+  .brand small{
+    overflow-wrap:break-word;
+    word-break:break-word;
+  }
+  .main-logo-logo{
+    max-width:220px;
+  }
+  .header-actions{
+    flex-wrap:nowrap;
+    justify-content:center;
+    gap:8px;
+    width:100%;
+  }
+  .lang-switch,
+  .back-link{
+    flex:0 1 auto;
+    min-height:40px;
+    padding:8px 14px;
+    font-size:.85rem;
+  }
 }
 @media (max-width:380px){
-  .header-inner{ padding:12px 14px; }
+  .header-inner{ padding:12px 14px; gap:10px; }
+  .header-actions{ gap:6px; }
   .lang-switch span{ display:none; } /* icône seule sur très petits écrans */
+  .lang-switch,
+  .back-link{ padding:8px 10px; font-size:.8rem; }
+  .brand-logo{ height:34px; max-width:100px; }
   .now-playing{ padding:12px; gap:8px; }
   .np-title{ font-size:.92rem; }
 }
