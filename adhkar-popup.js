@@ -144,18 +144,17 @@
     var now = Date.now();
     var nextTime = stored ? parseInt(stored, 10) : now + INTERVAL_MS;
 
-    if (!stored) {
-      try { sessionStorage.setItem(STORAGE_KEY, String(nextTime)); } catch (e) {}
+    // Si l'échéance stockée est déjà dépassée (onglet resté ouvert
+    // longtemps, tests, etc.), on ne rattrape JAMAIS en affichant tout
+    // de suite : on repart proprement sur un cycle complet de 5 minutes.
+    if (!stored || (nextTime - now) <= 0) {
+      nextTime = now + INTERVAL_MS;
     }
 
+    try { sessionStorage.setItem(STORAGE_KEY, String(nextTime)); } catch (e) {}
+
     var remaining = nextTime - now;
-    if (remaining <= 0) {
-      // Le délai est déjà écoulé pendant la navigation : on affiche
-      // rapidement, puis on repart sur un cycle complet de 5 minutes.
-      scheduleTimer = setTimeout(showPopup, 800);
-    } else {
-      scheduleTimer = setTimeout(showPopup, remaining);
-    }
+    scheduleTimer = setTimeout(showPopup, remaining);
   }
 
   if (document.readyState === 'loading') {
