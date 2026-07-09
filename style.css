@@ -956,9 +956,16 @@ body.splash-fallback .splash-word{ display:block; }
      rester aligné au bord, comme demandé pour la version mobile. */
   .order-section{ padding:32px 18px; }
   .order-benefits{ text-align:center; }
-  .order-benefits li{ text-align:center; }
+  .order-benefits li{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:8px;
+    padding:16px 14px;
+  }
   .order-benefits li span:not(.ob-icon){
-    flex:1;
+    flex:none;
+    width:100%;
     text-align:center;
   }
 }
@@ -1076,4 +1083,118 @@ a, button{ -webkit-tap-highlight-color:transparent; }
 
 @media (prefers-reduced-motion: reduce){
   .adhkar-popup-overlay, .adhkar-popup-card{ transition:none; }
+}
+
+/* -------------------- 18. Mini-player audio global --------------------
+   Injecté dynamiquement par audioManager.js (voir ce fichier) sur TOUTES
+   les pages. Reste caché tant qu'aucun audio n'est actif. Position fixe
+   bas-droite, indépendante de la direction RTL/LTR du contenu (on force
+   volontairement "right" ici : un lecteur flottant garde une position
+   d'écran fixe, ce n'est pas un élément de mise en page du texte).
+------------------------------------------------------------------------- */
+#gap-mini-player{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:9998;
+  display:none;
+  align-items:center;
+  gap:12px;
+  min-width:260px;
+  max-width:min(360px, calc(100vw - 32px));
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(8,30,28,0.88);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(201,162,75,0.32);
+  box-shadow:var(--shadow-soft), var(--shadow-gold);
+  color:var(--text-main);
+  font-family:var(--font-body);
+  transform:translateY(12px);
+  opacity:0;
+  transition:transform .35s var(--ease), opacity .35s var(--ease);
+}
+#gap-mini-player.is-visible{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
+}
+#gap-mini-player .mp-btn{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1px solid rgba(201,162,75,0.35);
+  background:var(--overlay-glass);
+  color:var(--gold-400);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all .25s var(--ease);
+}
+#gap-mini-player .mp-btn:hover{
+  background:rgba(201,162,75,0.16);
+  border-color:var(--gold-400);
+}
+#gap-mini-player .mp-btn svg{ width:18px; height:18px; }
+#gap-mini-player .mp-play svg{ width:16px; height:16px; }
+#gap-mini-player .mp-info{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+#gap-mini-player .mp-title{
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--cream-100);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#gap-mini-player .mp-progress{
+  position:relative;
+  width:100%;
+  height:4px;
+  border-radius:999px;
+  background:rgba(244,239,226,0.14);
+  overflow:hidden;
+  cursor:pointer;
+}
+#gap-mini-player .mp-progress-fill{
+  position:absolute;
+  inset-inline-start:0;
+  top:0;
+  bottom:0;
+  width:0%;
+  background:linear-gradient(90deg, var(--gold-700), var(--gold-400));
+  transition:width .15s linear;
+}
+#gap-mini-player .mp-stop{
+  color:#E15353;
+  border-color:rgba(196,58,58,0.3);
+}
+#gap-mini-player .mp-stop:hover{
+  background:#E15353;
+  color:var(--cream-100);
+  border-color:#E15353;
+}
+
+@media (max-width:480px){
+  #gap-mini-player{
+    right:10px;
+    bottom:10px;
+    left:10px;
+    max-width:none;
+    min-width:0;
+    padding:9px 12px;
+  }
+  #gap-mini-player .mp-btn{ width:34px; height:34px; }
+  #gap-mini-player .mp-title{ font-size:.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  #gap-mini-player{ transition:none; }
 }
