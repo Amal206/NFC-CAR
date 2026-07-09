@@ -132,9 +132,9 @@ a:focus-visible, button:focus-visible{
   flex-wrap:wrap;
   align-items:center;
   justify-content:center;
-  gap:10px 22px;
-  padding:14px var(--gutter);
-  max-width:720px;
+  gap:12px 26px;
+  padding:18px var(--gutter);
+  max-width:min(860px, 94vw);
   margin:0 auto;
   text-align:center;
 }
@@ -142,32 +142,38 @@ a:focus-visible, button:focus-visible{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  min-height:44px;
+  gap:12px;
+  min-height:48px;
 }
 .brand-logo{
-  height:36px;
+  height:clamp(40px, 6vw, 56px);
   width:auto;
-  max-width:120px;
+  max-width:160px;
   border-radius:8px;
   object-fit:contain;
 }
-.brand-text{ display:flex; flex-direction:column; line-height:1.2; align-items:center; }
+.brand-text{ display:flex; flex-direction:column; line-height:1.3; align-items:center; }
 .brand-name{
   display:none;
   /* affiché uniquement si aucun logo image n'est fourni */
   font-family:var(--font-display);
-  font-size:1.4rem;
+  font-size:clamp(1.4rem, 3vw, 1.8rem);
   color:var(--gold-400);
   letter-spacing:.5px;
 }
-.logo-fallback .brand-name{ display:inline; }
+.main-logo-logo{
+    display: block;
+    width: auto;
+    max-width: 300px;
+    margin: 0 auto;
+}
 .brand small{
   display:block;
   font-family:var(--font-body);
-  font-size:.6rem;
+  font-size:clamp(.78rem, 1.6vw, .95rem);
+  font-weight:600;
   color:var(--text-muted);
-  letter-spacing:1.5px;
+  letter-spacing:1px;
   text-align:center;
 }
 .header-actions{
@@ -175,38 +181,38 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   justify-content:center;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
 }
 .lang-switch{
   display:flex;
   align-items:center;
   gap:6px;
-  min-height:40px;
-  padding:8px 12px;
+  min-height:44px;
+  padding:9px 15px;
   border:1px solid rgba(201,162,75,0.3);
   border-radius:999px;
   background:var(--overlay-glass);
   color:var(--gold-400);
-  font-size:.78rem;
+  font-size:clamp(.85rem, 1.6vw, .95rem);
   font-weight:700;
   transition:all .25s var(--ease);
 }
 .lang-switch:hover{ background:rgba(201,162,75,0.14); border-color:var(--gold-400); }
-.lang-switch svg{ width:16px; height:16px; }
+.lang-switch svg{ width:18px; height:18px; }
 .back-link{
   display:flex;
   align-items:center;
   gap:6px;
-  font-size:.85rem;
+  font-size:clamp(.88rem, 1.6vw, 1rem);
   color:var(--text-muted);
-  min-height:40px;
-  padding:8px 14px;
+  min-height:44px;
+  padding:9px 16px;
   border:1px solid rgba(201,162,75,0.25);
   border-radius:999px;
   transition:all .25s var(--ease);
 }
 .back-link:hover{ color:var(--gold-400); border-color:var(--gold-400); background:var(--overlay-glass); }
-.back-link svg{ width:16px; height:16px; }
+.back-link svg{ width:18px; height:18px; }
 [dir="ltr"] .back-link svg{ transform:scaleX(-1); }
 
 /* -------------------- 5. Hero -------------------- */
