@@ -951,6 +951,16 @@ body.splash-fallback .splash-word{ display:block; }
     width:13px;
     height:13px;
   }
+
+  /* Section "Commander" : texte des bénéfices centré au lieu de
+     rester aligné au bord, comme demandé pour la version mobile. */
+  .order-section{ padding:32px 18px; }
+  .order-benefits{ text-align:center; }
+  .order-benefits li{ text-align:center; }
+  .order-benefits li span:not(.ob-icon){
+    flex:1;
+    text-align:center;
+  }
 }
 @media (max-width:380px){
   .header-inner{ padding:8px 12px; gap:6px; }
