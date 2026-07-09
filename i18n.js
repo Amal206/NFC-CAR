@@ -1,5 +1,5 @@
 /* ==========================================================================
-   دعاء — أذكار الطريق | i18n.js
+   دعاء — أذكار وأدعية | i18n.js
    Système de traduction Arabe / Français.
    - Langue stockée dans localStorage ('site_lang'), lue en tête de chaque
      page (voir le petit script inline dans <head>) pour fixer lang/dir
@@ -17,7 +17,7 @@
   /* -------------------- Dictionnaire -------------------- */
   var DICT = {
     // Marque / navigation commune
-    'brand.tagline':        { ar:'أذكار الطريق', fr:'Douâs de la route' },
+    'brand.tagline':        { ar:'أذكار وأدعية', fr:'Adhkar & Douas' },
     'nav.home':              { ar:'الرئيسية', fr:'Accueil' },
     'nav.about':             { ar:'من نحن', fr:'À propos' },
     'nav.quran':             { ar:'قرآن كريم', fr:'Coran' },
@@ -28,15 +28,15 @@
     'badge.no_app':          { ar:'بدون تطبيق', fr:'Sans application' },
     'badge.nfc':              { ar:'تقنية NFC سهلة', fr:'Technologie NFC simple' },
     'badge.devices':          { ar:'يعمل مع iPhone و Android', fr:'Fonctionne avec iPhone et Android' },
-    'badge.car':              { ar:'مناسب للسيارة', fr:'Adapté à la voiture' },
+    'badge.everywhere':       { ar:'مناسب لكل مكان', fr:'Adapté à tous les lieux' },
 
     // Note / footer
     'note.text':              { ar:'ملاحظة: يحتاج اتصال إنترنت خفيف لتشغيل المحتوى الصوتي.', fr:'Remarque : une connexion internet légère est nécessaire pour lire le contenu audio.' },
-    'footer.copyright':      { ar:'© دعاء — أذكار الطريق', fr:'© دعاء — Douâs de la route' },
+    'footer.copyright':      { ar:'© دعاء — أذكار وأدعية', fr:'© دعاء — Adhkar & Douas' },
 
     // Section commande
-    'order.title':            { ar:'تحب تطلب دعاء NFC لسيارتك؟', fr:'Vous voulez commander une carte دعاء NFC pour votre voiture ?' },
-    'order.text':              { ar:'بطاقة أنيقة تضعها في سيارتك، تفتح لك هذا العالم بلمسة واحدة.', fr:'Une carte élégante à glisser dans votre voiture, qui ouvre cet univers en une seule touche.' },
+    'order.title':            { ar:'تحب تطلب بطاقة دعاء NFC؟', fr:'Vous voulez commander une carte دعاء NFC ?' },
+    'order.text':              { ar:'بطاقة أنيقة تضعها أينما تشاء، تفتح لك هذا العالم بلمسة واحدة.', fr:'Une carte élégante à placer où vous le souhaitez, qui ouvre cet univers en une seule touche.' },
     'order.btn':                { ar:'اطلب توا', fr:'Commander maintenant' },
     'order.pending_alert':    { ar:'رابط الطلب سيتم إضافته قريباً.', fr:'Le lien de commande sera ajouté prochainement.' },
 
@@ -48,24 +48,30 @@
     'aria.next':                { ar:'التالي', fr:'Suivant' },
 
     // Accueil
-    'home.eyebrow':           { ar:'تقنية NFC للسيارة', fr:'Technologie NFC pour la voiture' },
-    'home.title':              { ar:'أذكار الطريق', fr:'Douâs de la route' },
-    'home.lead':               { ar:'قبل ما تشد الطريق… قرّب هاتفك واستمع لذكر يطمّن قلبك.', fr:'Avant de prendre la route… approchez votre téléphone et écoutez une invocation qui apaise le cœur.' },
+    'home.eyebrow':           { ar:'تقنية NFC للجميع', fr:'Technologie NFC pour tous' },
+    'home.title':              { ar:'أذكار وأدعية', fr:'Adhkar & Douas' },
+    'home.lead':               { ar:'أينما كنت… قرّب هاتفك واستمع لذكر يطمّن قلبك.', fr:'Où que vous soyez… approchez votre téléphone et écoutez une invocation qui apaise le cœur.' },
     'home.card.rokoub.label': { ar:'دعاء الركوب', fr:'Douâ de la monture' },
-    'home.card.rokoub.sub':   { ar:'قبل تشغيل المحرك', fr:'Avant de démarrer' },
+    'home.card.rokoub.sub':   { ar:'قبل الانطلاق', fr:'Avant de partir' },
     'home.card.sabah.label':  { ar:'أذكار الصباح', fr:'Adhkar du matin' },
     'home.card.sabah.sub':    { ar:'ابدأ يومك بسكينة', fr:'Commencez la journée sereinement' },
+    'home.card.doukhoul-khourouj.label': { ar:'دعاء الدخول والخروج', fr:'Douâ d\u2019entrée et de sortie' },
+    'home.card.doukhoul-khourouj.sub':   { ar:'حصن نفسك', fr:'Une protection au quotidien' },
+    'home.card.taysir.label': { ar:'دعاء التيسير', fr:'Douâ de la facilité' },
+    'home.card.tay.sub':      { ar:'لتيسير الأمور', fr:'Pour faciliter vos affaires' },
     'home.card.massa.label':  { ar:'أذكار المساء', fr:'Adhkar du soir' },
     'home.card.massa.sub':    { ar:'اختم نهارك بذكر', fr:'Terminez la journée en beauté' },
     'home.card.safar.label':  { ar:'دعاء السفر', fr:'Douâ du voyage' },
     'home.card.safar.sub':    { ar:'لرحلة مطمئنة', fr:'Pour un trajet serein' },
+    'home.card.rezek.label':  { ar:'دعاء الرزق', fr:'Douâ de la subsistance' },
+    'home.card.rezek.sub':    { ar:'الدعاء هو مفتاح الرزق', fr:'L\u2019invocation, clé de la subsistance' },
     'home.card.quran.label':  { ar:'قرآن كريم', fr:'Coran' },
-    'home.card.quran.sub':    { ar:'تلاوات هادئة للطريق', fr:'Récitations apaisantes pour la route' },
+    'home.card.quran.sub':    { ar:'تلاوات هادئة لكل وقت', fr:'Récitations apaisantes à tout moment' },
 
     // À propos
     'about.eyebrow':           { ar:'فكرتنا', fr:'Notre idée' },
     'about.title':             { ar:'من نحن', fr:'À propos' },
-    'about.lead':              { ar:'"دعاء" بطاقة NFC صغيرة تُوضع في سيارتك، وبلمسة هاتف واحدة تفتح لك عالماً من الأذكار والدعاء والتلاوات الهادئة، دون أي تطبيق يُثقل هاتفك.', fr:'« دعاء » est une petite carte NFC à placer dans votre voiture. En une seule touche de votre téléphone, elle ouvre un univers d\u2019invocations, de douas et de récitations apaisantes, sans aucune application à installer.' },
+    'about.lead':              { ar:'"دعاء" بطاقة NFC صغيرة يمكنك وضعها أينما تشاء، وبلمسة هاتف واحدة تفتح لك عالماً من الأذكار والدعاء والتلاوات الهادئة، دون أي تطبيق يُثقل هاتفك.', fr:'« دعاء » est une petite carte NFC que vous pouvez placer où vous le souhaitez. En une seule touche de votre téléphone, elle ouvre un univers d\u2019invocations, de douas et de récitations apaisantes, sans aucune application à installer.' },
     'about.how_title':        { ar:'كيف تعمل؟', fr:'Comment ça marche ?' },
     'about.how_text':         { ar:'قرّب هاتفك من البطاقة، تُفتح هذه الصفحة تلقائياً، تختار ما يناسب لحظتك، وتضغط زر التشغيل لتستمع.', fr:'Approchez votre téléphone de la carte : cette page s\u2019ouvre automatiquement, choisissez ce qui correspond à votre moment, puis appuyez sur le bouton de lecture pour écouter.' },
     'about.gallery_title':    { ar:'لمحة عن التطبيق', fr:'Aperçu de l\u2019application' },
@@ -74,7 +80,7 @@
     // دعاء الركوب
     'rokoub.eyebrow':          { ar:'قبل الانطلاق', fr:'Avant de démarrer' },
     'rokoub.title':            { ar:'دعاء الركوب', fr:'Douâ de la monture' },
-    'rokoub.lead':             { ar:'سُنّة نبوية جميلة تُقال عند الجلوس في السيارة، تذكّرك بنعمة التسخير وتطمئن قلبك قبل الطريق.', fr:'Une belle sunna prophétique à réciter en prenant place dans la voiture : elle rappelle le bienfait d\u2019être porté et apaise le cœur avant la route.' },
+    'rokoub.lead':             { ar:'سُنّة نبوية جميلة تُقال عند ركوب أي وسيلة نقل، تذكّرك بنعمة التسخير وتطمئن قلبك قبل الانطلاق.', fr:'Une belle sunna prophétique à réciter en montant dans tout moyen de transport : elle rappelle le bienfait d\u2019être porté et apaise le cœur avant de partir.' },
     'rokoub.gloss':            { ar:'معنى الدعاء: تسبيح لله الذي يسّر لنا وسيلة النقل، مع توكّل على الله في مآل رحلتنا.', fr:'Signification : une glorification de Dieu qui a facilité pour nous ce moyen de transport, avec un abandon confiant de notre trajet à Lui.' },
 
     // أذكار الصباح
@@ -93,9 +99,9 @@
     'safar.lead':              { ar:'مهما طال الطريق أو قصُر، اجعل انطلاقتك بذكر يحفظك ويؤنس وحدتك.', fr:'Que la route soit longue ou courte, commencez-la par une invocation qui vous protège et adoucit la solitude du chemin.' },
 
     // قرآن كريم
-    'quran.eyebrow':           { ar:'تلاوات الطريق', fr:'Récitations de la route' },
+    'quran.eyebrow':           { ar:'تلاوات هادئة', fr:'Récitations apaisantes' },
     'quran.title':             { ar:'قرآن كريم', fr:'Coran' },
-    'quran.lead':              { ar:'اختر تلاوة تناسب حالك، واتركها ترافقك حتى نهاية الطريق.', fr:'Choisissez une récitation qui vous correspond, et laissez-la vous accompagner jusqu\u2019au bout du chemin.' }
+    'quran.lead':              { ar:'اختر تلاوة تناسب حالك، واتركها ترافقك في كل وقت.', fr:'Choisissez une récitation qui vous correspond, et laissez-la vous accompagner à tout moment.' }
   };
 
   /* -------------------- Utilitaires -------------------- */
