@@ -129,31 +129,35 @@ a:focus-visible, button:focus-visible{
 .site-header.scrolled{ box-shadow:0 8px 24px rgba(0,0,0,0.35); }
 .header-inner{
   display:flex;
+  flex-wrap:wrap;
   align-items:center;
-  justify-content:space-between;
-  padding:14px var(--gutter);
-  max-width:720px;
+  justify-content:center;
+  gap:12px 26px;
+  padding:18px var(--gutter);
+  max-width:min(860px, 94vw);
   margin:0 auto;
+  text-align:center;
 }
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
-  min-height:44px;
+  justify-content:center;
+  gap:12px;
+  min-height:48px;
 }
 .brand-logo{
-  height:36px;
+  height:clamp(40px, 6vw, 56px);
   width:auto;
-  max-width:120px;
+  max-width:160px;
   border-radius:8px;
   object-fit:contain;
 }
-.brand-text{ display:flex; flex-direction:column; line-height:1.2; }
+.brand-text{ display:flex; flex-direction:column; line-height:1.3; align-items:center; }
 .brand-name{
-  display:none; 
+  display:none;
   /* affiché uniquement si aucun logo image n'est fourni */
   font-family:var(--font-display);
-  font-size:1.4rem;
+  font-size:clamp(1.4rem, 3vw, 1.8rem);
   color:var(--gold-400);
   letter-spacing:.5px;
 }
@@ -161,68 +165,49 @@ a:focus-visible, button:focus-visible{
 .brand small{
   display:block;
   font-family:var(--font-body);
-  font-size:.6rem;
+  font-size:clamp(.78rem, 1.6vw, .95rem);
+  font-weight:600;
   color:var(--text-muted);
-  letter-spacing:1.5px;
-}
-.main-logo-logo {
-    display: block;
-    width: 220px;      
-      /* taille du logo */
-    height: auto;
-    margin: 0 auto;      / centrage horizontal /
-    object-fit: contain;
-}
-
-/*Pour centrer dans son conteneur*/
-.brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-/*Responsive téléphone */
-@media (max-width: 768px) {
-    .main-logo {
-        width: 150px;
-    }
+  letter-spacing:1px;
+  text-align:center;
 }
 .header-actions{
   display:flex;
   align-items:center;
-  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
 }
 .lang-switch{
   display:flex;
   align-items:center;
   gap:6px;
-  min-height:40px;
-  padding:8px 12px;
+  min-height:44px;
+  padding:9px 15px;
   border:1px solid rgba(201,162,75,0.3);
   border-radius:999px;
   background:var(--overlay-glass);
   color:var(--gold-400);
-  font-size:.78rem;
+  font-size:clamp(.85rem, 1.6vw, .95rem);
   font-weight:700;
   transition:all .25s var(--ease);
 }
 .lang-switch:hover{ background:rgba(201,162,75,0.14); border-color:var(--gold-400); }
-.lang-switch svg{ width:16px; height:16px; }
+.lang-switch svg{ width:18px; height:18px; }
 .back-link{
   display:flex;
   align-items:center;
   gap:6px;
-  font-size:.85rem;
+  font-size:clamp(.88rem, 1.6vw, 1rem);
   color:var(--text-muted);
-  min-height:40px;
-  padding:8px 14px;
+  min-height:44px;
+  padding:9px 16px;
   border:1px solid rgba(201,162,75,0.25);
   border-radius:999px;
   transition:all .25s var(--ease);
 }
 .back-link:hover{ color:var(--gold-400); border-color:var(--gold-400); background:var(--overlay-glass); }
-.back-link svg{ width:16px; height:16px; }
+.back-link svg{ width:18px; height:18px; }
 [dir="ltr"] .back-link svg{ transform:scaleX(-1); }
 
 /* -------------------- 5. Hero -------------------- */
@@ -870,6 +855,9 @@ body.splash-fallback .splash-word{ display:block; }
 .spacer-lg{ height:var(--section-space); }
 
 /* -------------------- 16. Ajustements fins mobile -------------------- */
+@media (max-width:600px){
+  .header-inner{ gap:8px 14px; }
+}
 @media (max-width:380px){
   .header-inner{ padding:12px 14px; }
   .lang-switch span{ display:none; } /* icône seule sur très petits écrans */
@@ -878,3 +866,104 @@ body.splash-fallback .splash-word{ display:block; }
 }
 /* Zone tactile confortable pour tous les éléments interactifs */
 a, button{ -webkit-tap-highlight-color:transparent; }
+/* -------------------- 17. Rappel d'Adhkar (popup flottante) --------------------
+   Composant autonome et réutilisable, injecté par adhkar-popup.js sur
+   TOUTES les pages (aucune page dédiée nécessaire). Voir aussi
+   adhkar-data.js pour la liste des adhkar affichés aléatoirement.
+------------------------------------------------------------------------- */
+.adhkar-popup-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(8,30,28,0.55);
+  backdrop-filter:blur(4px) saturate(120%);
+  -webkit-backdrop-filter:blur(4px) saturate(120%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s var(--ease);
+}
+.adhkar-popup-overlay.is-visible{
+  opacity:1;
+  pointer-events:auto;
+}
+.adhkar-popup-card{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  background:
+    radial-gradient(360px 220px at 50% -20%, rgba(201,162,75,0.10), transparent 60%),
+    linear-gradient(160deg, var(--teal-900), var(--teal-950));
+  border:1px solid rgba(201,162,75,0.35);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft), var(--shadow-gold);
+  padding:34px 28px 28px;
+  text-align:center;
+  transform:translateY(22px) scale(.96);
+  opacity:0;
+  transition:transform .4s var(--ease), opacity .4s var(--ease);
+}
+.adhkar-popup-overlay.is-visible .adhkar-popup-card{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+.adhkar-popup-mark{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 14px;
+  width:44px;
+  height:44px;
+  color:var(--gold-400);
+  opacity:.9;
+}
+.adhkar-popup-mark svg{ width:100%; height:100%; }
+.adhkar-popup-title{
+  font-family:var(--font-display);
+  color:var(--gold-400);
+  font-size:1.05rem;
+  margin:0 0 16px;
+  letter-spacing:.2px;
+}
+.adhkar-popup-text{
+  font-family:var(--font-display);
+  color:var(--text-main);
+  font-size:1.18rem;
+  line-height:2;
+  margin:0;
+}
+.adhkar-popup-close{
+  position:absolute;
+  top:12px;
+  inset-inline-end:12px;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:none;
+  border-radius:50%;
+  background:rgba(196,58,58,0.14);
+  color:#E15353;
+  font-size:1rem;
+  line-height:1;
+  transition:all .25s var(--ease);
+}
+.adhkar-popup-close:hover{
+  background:#E15353;
+  color:var(--cream-100);
+  transform:rotate(90deg);
+}
+.adhkar-popup-close svg{ width:16px; height:16px; }
+
+@media (max-width:480px){
+  .adhkar-popup-card{ padding:30px 20px 22px; border-radius:var(--radius-md); }
+  .adhkar-popup-text{ font-size:1.05rem; line-height:1.9; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .adhkar-popup-overlay, .adhkar-popup-card{ transition:none; }
+}
